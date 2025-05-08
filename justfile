@@ -45,6 +45,15 @@ ida:
         uv run tess-ida-pipe --console --trace single -m 2025-04 -i ida -o ecsv -n stars${i} 
     done
 
+# get ad-hoc IDA files and transform them to ECSV
+ida2:
+    #!/usr/bin/env bash
+    set -exuo pipefail
+    for i in 9 52 66 
+    do
+        uv run tess-ida-pipe --console --trace single -m 2025-04 -i ida -o ecsv -n stars${i} 
+    done
+
 # Backup .env to storage unit
 env-bak drive=def_drive: (check_mnt drive) (env-backup join(drive, "env", project))
 
