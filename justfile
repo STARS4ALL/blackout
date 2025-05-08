@@ -40,9 +40,9 @@ run:
 ida:
     #!/usr/bin/env bash
     set -exuo pipefail
-    for i in 1 7 17 33 62 73 75 76 88 201 202 272 495 555 608 612 639 660 714 746 747 749 759 795 831 835 945 
+    for i in 1 7 17 33 62 73 75 76 85 88 201 202 272 495 555 608 612 639 660 714 746 747 749 759 795 831 835 945 1134
     do
-        uv run tess-ida-pipe --console --trace single -m 2024-04 -i ida -o ecsv -n stars${i} 
+        uv run tess-ida-pipe --console --trace single -m 2025-04 -i ida -o ecsv -n stars${i} 
     done
 
 # Backup .env to storage unit
