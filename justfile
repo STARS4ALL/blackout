@@ -24,12 +24,26 @@ build:
     rm -fr dist/*
     uv build
 
+# Install all the necessary software
 install:
     uv venv --python 3.12
     uv pip install matplotlib astropy notebook TESS-IDA-TOOLS licatools
+    uv run tess-ida-db --console schema create
 
+# Launches the Jupyter notebook
 run:
     uv run jupyter notebook
+
+# Original list is 1 7 17 33 62 73 75 76 88 201 202 272 495 536 555 608 612 639 660 714 746 747 749 759 795 831 835 945 1134
+
+# get the IDA files and transform them to ECSV
+ida:
+    #!/usr/bin/env bash
+    set -exuo pipefail
+    for i in 1 7 17 33 62 73 75 76 88 201 202 272 495 555 608 612 639 660 714 746 747 749 759 795 831 835 945 
+    do
+        uv run tess-ida-pipe --console --trace single -m 2024-04 -i ida -o ecsv -n stars${i} 
+    done
 
 # Backup .env to storage unit
 env-bak drive=def_drive: (check_mnt drive) (env-backup join(drive, "env", project))
