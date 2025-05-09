@@ -27,7 +27,7 @@ build:
 # Install all the necessary software
 install:
     uv venv --python 3.12
-    uv pip install matplotlib astropy notebook TESS-IDA-TOOLS licatools
+    uv pip install matplotlib astropy notebook TESS-IDA-TOOLS
     uv run tess-ida-db --console schema create
 
 # Launches the Jupyter notebook
