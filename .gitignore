@@ -176,3 +176,5 @@ cython_debug/
 # My own stuff
 ida/
 *.db
+*.zip
+zipped/

@@ -54,6 +54,21 @@ ida2:
         uv run tess-ida-pipe --console --trace single -m 2025-04 -i ida -o ecsv -n stars${i} 
     done
 
+zip:
+    #!/usr/bin/env bash
+    set -exuo pipefail
+    mkdir -p zipped
+    files=$(ls ecsv/*/*.ecsv)
+    for f in ${files}
+    do
+        cp -f ${f} zipped
+    done
+    [ -f idas.zip ] && rm idas.zip
+    zip idas.zip zipped/*
+
+
+
+
 # Backup .env to storage unit
 env-bak drive=def_drive: (check_mnt drive) (env-backup join(drive, "env", project))
 
