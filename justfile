@@ -28,7 +28,10 @@ build:
 install:
     uv venv --python 3.12
     uv pip install matplotlib astropy notebook TESS-IDA-TOOLS
-    uv run tess-ida-db --console schema create
+    uv run tess-ida-db --console --trace schema create
+
+database:
+    uv run tess-ida-db --console --trace schema create
 
 # Launches the Jupyter notebook
 run:
@@ -104,7 +107,8 @@ env-backup bak_dir:
     fi
     mkdir -p {{ bak_dir }}
     cp {{ local_env }} {{ bak_dir }}
-    cp *.ecsv {{ bak_dir }}
+    cp -r ecsv/ {{ bak_dir }}
+    cp -r adm/ {{ bak_dir }}
   
 [private]
 env-restore bak_dir:
@@ -115,4 +119,5 @@ env-restore bak_dir:
         exit 1 
     fi
     cp {{ bak_dir }}/.env {{ local_env }}
-    cp {{ bak_dir }}/*.ecsv .
+    cp -r {{ bak_dir }}/ecsv .
+    cp -r {{ bak_dir }}/adm .
