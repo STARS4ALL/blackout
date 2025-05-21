@@ -35,6 +35,10 @@ database:
 
 # Launches the Jupyter notebook
 run:
+    #!/usr/bin/env bash
+    set -exuo pipefail
+    unset VIRTUAL_ENV
+    source .venv/bin/activate
     uv run jupyter notebook
 
 # Original list is 1 7 17 33 62 73 75 76 88 201 202 272 495 536 555 608 612 639 660 714 746 747 749 759 795 831 835 945 1134
